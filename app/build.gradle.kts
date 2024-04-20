@@ -1,6 +1,8 @@
 plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.jetbrainsKotlinAndroid)
+  alias(libs.plugins.jetbrainsKotlinKapt)
+  alias(libs.plugins.daggerHiltAndroid) apply false
 }
 
 android {
@@ -30,6 +32,9 @@ android {
   kotlinOptions {
     jvmTarget = "1.8"
   }
+  buildFeatures {
+    dataBinding = true
+  }
 }
 
 dependencies {
@@ -42,4 +47,9 @@ dependencies {
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
+
+  //
+  implementation(libs.lifecycle.extensions)
+  implementation(libs.lottie)
+  implementation(libs.hilt)
 }
