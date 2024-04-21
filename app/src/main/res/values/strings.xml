@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Rick And Morty Tutorial</string>
+
+    <string name="error_message">İşlem sırasında bir hata oluştu!</string>
 </resources>

@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(private val dataSource: CharacterDataSource) {
-  suspend fun getCharacterList(context: Context): Flow<SBAResult<CharacterWrapper>> {
+  suspend fun getCharacterList(pageIndex: Int, context: Context): Flow<SBAResult<CharacterWrapper>> {
     return toResultFlow(context) {
-      dataSource.getCharacters()
+      dataSource.getCharacters(pageIndex)
     }
   }
 }

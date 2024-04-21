@@ -4,7 +4,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sba.rickandmortytutorial.R
 import com.sba.rickandmortytutorial.base.BaseViewModel
+import com.sba.rickandmortytutorial.data.ApiStatus
 import com.sba.rickandmortytutorial.data.SBAMessage
 import com.sba.rickandmortytutorial.data.SBAResult
 import com.sba.rickandmortytutorial.data.enums.ToastType
@@ -33,16 +35,23 @@ class MainViewModel @Inject constructor(
   override fun onCreate(owner: LifecycleOwner) {
     super.onCreate(owner)
 
-    //showLoader()
+    showLoader()
     getCharacterList()
-    //message.value = SBAMessage("Test mesaj", ToastType.Error)
   }
   //endregion
 
   //region view → vm methods (public)
-  fun getCharacterList() = viewModelScope.launch {
-    repository.getCharacterList(resourcesProvider.context).collect { values ->
-      _characterList.value = values
+  //endregion
+
+  //region private methods
+  private fun getCharacterList() = viewModelScope.launch {
+    repository.getCharacterList(1, resourcesProvider.context).collect { values ->
+      when (values.status) {
+        ApiStatus.SUCCESS -> _characterList.value = values
+        ApiStatus.ERROR -> message.value =
+          SBAMessage(resourcesProvider.getString(R.string.error_message), ToastType.Error)
+      }
+      hideLoader()
     }
   }
   //endregion
