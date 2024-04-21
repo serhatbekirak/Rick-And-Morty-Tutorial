@@ -55,6 +55,7 @@ dependencies {
   implementation(libs.lifecycle.viewmodel.ktx)
   implementation(libs.lottie)
   implementation(libs.hilt.android)
+  implementation(libs.glide)
   implementation(libs.bundles.retrofit.netowrk)
 
   kapt(libs.hilt.compiler)
