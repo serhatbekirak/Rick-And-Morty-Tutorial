@@ -21,7 +21,7 @@ android {
 
   buildTypes {
     release {
-      isMinifyEnabled = false
+      isMinifyEnabled = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
   }
@@ -34,6 +34,7 @@ android {
   }
   buildFeatures {
     dataBinding = true
+    buildConfig = true
   }
 }
 
@@ -52,4 +53,5 @@ dependencies {
   implementation(libs.lifecycle.extensions)
   implementation(libs.lottie)
   implementation(libs.hilt)
+  implementation(libs.bundles.retrofit.netowrk)
 }
