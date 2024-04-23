@@ -42,9 +42,13 @@ class MainViewModel @Inject constructor(
   //endregion
 
   //region view → vm methods (public)
-  fun loadMoreItems() {
-    showLoader()
-    retrieveItems()
+
+  fun onSwipeLike(cardCount: Int) {
+    if (cardCount < 3 && hasMorePage) retrieveItems()
+  }
+
+  fun onSwipeNope(cardCount: Int) {
+    if (cardCount < 3 && hasMorePage) retrieveItems()
   }
   //endregion
 
